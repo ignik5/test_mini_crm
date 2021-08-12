@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="phone" >Телеон компании</label>
+                                <label for="phone" >Телефон компании</label>
                                 <input id="phone" type="text" class="form-control" name="phone" value="{{ $Company->phone ?? old( 'phone' ) }}">
                             </div>
                             <div class="form-group">

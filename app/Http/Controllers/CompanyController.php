@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CompanyRequest;
+use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Models\Staff;
 use Illuminate\Http\Request;
@@ -37,19 +37,13 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CompanyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'website' => 'required',
-            'logo' => 'required',
-        ]);
-       $params =  $request->all(); //сохраняем в переменную все значения из request
+
+        $params = $request->validated(); //сохраняем в переменную все значения из request
         unset($params['logo']);
         if ($request->has('logo')) {
             $params['logo'] = $request->file('logo')->store('public');//если переменная с картинкой не пустая то сохраняем в Storage
@@ -86,20 +80,15 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      *
      *  @param \App\Models\Company $Company
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CompanyRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $Company)
+    public function update(CompanyRequest $request, Company $Company)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'website' => 'required',
-            'logo' => 'required',
-        ]);//валидация
-        $params = $request->all();//если валидация прошла то сохраняем все данные в переменную
+
+
+        $params = $request->validated(); //если валидация прошла то сохраняем все данные в переменную
         unset($params['logo']);
         if ($request->has('logo')) {
             Storage::delete($Company->logo);

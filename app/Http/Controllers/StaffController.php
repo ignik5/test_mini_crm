@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Staff;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\StaffRequest;
 
 
 class StaffController extends Controller
@@ -34,19 +35,13 @@ class StaffController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StaffRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StaffRequest $request)
     {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'company_id' => 'required|int',
-        ]);//валидация
-        $params = $request->all();//сохраняем все данные в переменную
+
+        $params = $request->validated();//сохраняем все данные в переменную
         Staff::create($params);//создаем новогую компанию по данным
         return redirect()->route('staff.index')->with('success','Сотрудник создан!');//редиректим на индекс и передаем сообщение об успешном создании
     }
@@ -79,14 +74,14 @@ class StaffController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StaffRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Staff $Staff)
+    public function update(StaffRequest $request, Staff $Staff)
     {
-        $params = $request->all();
-        Staff::create($params);//создаем новогую компанию по данным
+        $params = $request->validated();
+        $Staff->update($params);//сохраняем  измененные данные
         return redirect()->route('staff.index')->with('success','Данные о сотруднике обновлены!');//открываем представление сотрудников и передаем сообщение об успешном создании сотрудника
      }
 

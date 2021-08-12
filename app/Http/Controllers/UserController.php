@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistrateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\UserRequest;
 
 
 class UserController extends Controller
@@ -14,14 +15,16 @@ class UserController extends Controller
     {
         return view('User.create');//возвращаем представление с формой регистрации
     }
-
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\RegistrateRequest  $request
+     *
+     */
+    public function store(RegistrateRequest  $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
-        ]);//валидация
+        $params = $request->validated();//вызываем валидацию
+
         $user = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -36,12 +39,11 @@ class UserController extends Controller
         return view('User.login');//возвращаем представление с формой авторизации
 
     }
-    public function login(Request $request)
+    public function login(UserRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);//валидация
+
+        $params = $request->validated();//вызываем валидацию
+
        if( Auth::attempt([
             'email' =>$request->email,
             'password' =>$request->password,

@@ -19,6 +19,7 @@ Route::group(['middleware'=> 'auth'], function() {//вызываем осред�
 
 });
 Route::group(['middleware'=> 'guest'], function() {//вызываем осредника проверяющего неавторизованного пользователя
+
 Route::get('/register', [UserController::class, 'create'])->name('register.create');//форма регистрации
 Route::post('/register', [UserController::class, 'store'])->name('register.store');//вызов контроллера регистрации
 
