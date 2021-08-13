@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 </head>
 <body>
-{{--$menu --}}
+
 
 
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">

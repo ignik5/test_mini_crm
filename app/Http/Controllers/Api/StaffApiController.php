@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\ApiStaffResource;
 use App\Http\Controllers\Controller;
 use App\Models\Staff;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 
 class StaffApiController extends Controller
