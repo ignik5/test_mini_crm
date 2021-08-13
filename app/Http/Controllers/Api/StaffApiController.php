@@ -6,19 +6,25 @@ use App\Http\Resources\ApiStaffResource;
 use App\Http\Controllers\Controller;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class StaffApiController extends Controller
 {
     public function index()
     {
-        $Staff = Staff::get();//получаем всех сотрудников
-        return ApiStaffResource::collection($Staff);//возвращаем  коллекцию сотрудников
+        $Staff = Staff::paginate(2);//получаем всех сотрудников
+        $count = ["LengthAwePagination " => count($Staff)];
+
+        return response()->json( [$Staff,$count], 200);//возвращаем  сотрудников
+
+
     }
 
 
     public function Staff($id)
     {
         $Stafing = Staff::where('id', $id)->get();//получаем одного сотрудника
-        return ApiStaffResource::collection($Stafing);//возвращаем  коллекцию из одного  сотрудника
+        return response()->json( $Stafing, 200);//возвращаем  коллекцию из одного  сотрудника
     }
 }

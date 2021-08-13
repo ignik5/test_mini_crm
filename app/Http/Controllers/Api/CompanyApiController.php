@@ -11,13 +11,14 @@ class CompanyApiController extends Controller
 {
     public function index()
 {
-    $Companies = Company::get();//получаетм все компании
-    return ApiResource::collection($Companies);//возвращаем коллекцию компаний
+    $Companies = Company::paginate(2);//получаетм все компании
+    $count = ["LengthAwePagination " => count($Companies)];
+    return response()->json( [$Companies,$count], 200);//возвращаем коллекцию компаний
 }
 
     public function  Company($id)
 {
     $Company = Company::where('id', $id)->get();//получаем одну компанию по ID
-    return ApiResource::collection($Company);//возвращаем коллекцию из одной компании
+    return response()->json( $Company, 200);//возвращаем коллекцию из одной компании
 }
 }
