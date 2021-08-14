@@ -39,7 +39,6 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-
         $params = $request->validated(); //сохраняем в переменную все значения из request
         unset($params['logo']);
         if ($request->has('logo')) {
@@ -83,8 +82,6 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, Company $Company)
     {
-
-
         $params = $request->validated(); //если валидация прошла то сохраняем все данные в переменную
         unset($params['logo']);
         if ($request->has('logo')) {

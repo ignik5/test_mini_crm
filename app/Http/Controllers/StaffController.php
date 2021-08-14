@@ -39,7 +39,6 @@ class StaffController extends Controller
      */
     public function store(StaffRequest $request)
     {
-
         $params = $request->validated();//сохраняем все данные в переменную
         Staff::create($params);//создаем новогую компанию по данным
         return redirect()->route('staff.index')->with('success','Сотрудник создан!');//редиректим на индекс и передаем сообщение об успешном создании

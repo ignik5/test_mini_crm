@@ -1,27 +1,18 @@
 @extends('layouts.master')
 @section('title','Компании')
-
-
 @section('menu')
     @include('menu')
 @endsection
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-
-
                     <div class="card-body">
-
                         <p>Компания {{ $Company->name }} </p>
-
-
                         <div>
                             <table class="table">
                                 <tbody>
-
                                     <tr>
                                         <td>ID {{ $Company->id }}</td>
                                         <td>Название {{ $Company->name }}</td>
@@ -36,8 +27,6 @@
                                             @endif
                                         </td>
                                     </tr>
-
-
                             <table class="table">
                                 <h2>Сотрудники </h2>
                                 <tbody>
@@ -48,9 +37,7 @@
                                             <td>{{$staf->company_id}}</td>
                                             <td>{{$staf->phone}}</td>
                                             <td>{{$staf->email}}</td>
-
                                             <td>
-
                                                 <div class="btn-group" role="group">
                                                     <form action="{{ route('staff.destroy', $staf) }}" method="POST">
                                                         <a class="btn btn-success" type="button" href="{{ route('staff.show', $staf) }}">Открыть</a>
@@ -61,19 +48,13 @@
                                                 </div>
                                             </td>
                                         </tr>
-
                                         @endforeach
                                     @else
                                     нет сотрудников
                                     @endif</td>
-
-
-
                                 </tbody>
-
                             </table>
                         <a href="{{ route('staff.create') }}"><button type="button" class="bth btn-success">Создать нового сотрудника</button></a>
-
                         </div>
                     </div></div></div></div>
 @endsection

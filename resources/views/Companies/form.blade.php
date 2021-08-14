@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('title','Создание компании')
-
 @section('menu')
     @include('menu')
 @endsection
@@ -11,24 +10,18 @@
                 <div class="card">
                     <div class="card-body">
                         <form  enctype="multipart/form-data" method="POST"  @isset($Company)
-
                                action="{{ route('company.update', $Company)}}"
-
                                @else
                                action="{{ route('company.store') }}"
-
-
                             @endisset>
                            @isset($Company)
                                 @method('PUT')
                             @endisset
                             @csrf
-
                             <div class="form-group">
                                 <label for="name" >Название компании</label>
                                 <input id="name" type="text" class="form-control" name="name" value="{{ $Company->name ?? old( 'name' ) }}">
                             </div>
-
                             <div class="form-group">
                                 <label for="phone" >Телефон компании</label>
                                 <input id="phone" type="text" class="form-control" name="phone" value="{{ $Company->phone ?? old( 'phone' ) }}">
@@ -55,7 +48,6 @@
                                 </button>
                             </div>
                         </form>
-
                     </div></div></div></div></div>
 @endsection
 

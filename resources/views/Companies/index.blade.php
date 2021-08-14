@@ -3,19 +3,13 @@
 @section('menu')
 @include('menu')
 @endsection
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-
-
-                    <div class="card-body">
-
+                   <div class="card-body">
                         <p>adminka </p>
-
-
                         <div>
                             <table class="table">
                                 <tbody>
@@ -48,7 +42,6 @@
                                         <td>{{ $Company->website }}</td>
                                      {{--   // 'logo'--}}
                                         <td>
-
                                             <div class="btn-group" role="group">
                                                 <form action="{{ route('company.destroy', $Company) }}" method="POST">
                                                     <a class="btn btn-success" type="button" href="{{ route('company.show', $Company) }}">Открыть</a>
@@ -61,7 +54,6 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                             </table>
                             <a href="{{ route('company.create') }}"><button type="button" class="bth btn-success">Создать новую компанию</button></a>
                             {{$Companies->links()}}

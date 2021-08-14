@@ -22,8 +22,7 @@ class UserController extends Controller
      */
     public function store(RegistrateRequest  $request)
     {
-        $params = $request->validated();//вызываем валидацию
-
+        $request->validated();//вызываем валидацию
         $user = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -36,13 +35,10 @@ class UserController extends Controller
     public function loginForm()
     {
         return view('User.login');//возвращаем представление с формой авторизации
-
     }
     public function login(UserRequest $request)
     {
-
-        $params = $request->validated();//вызываем валидацию
-
+       $request->validated();//вызываем валидацию
        if( Auth::attempt([
             'email' =>$request->email,
             'password' =>$request->password,
@@ -54,7 +50,8 @@ class UserController extends Controller
            return redirect()->back()->with('error', 'Неправильный логин или пароль');//делаем редирект обратно с сообщением
        }
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();//проводим выход из системы
         return redirect()->route('login.create');//возвращаем форму авторизации
     }
