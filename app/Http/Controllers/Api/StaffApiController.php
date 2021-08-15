@@ -14,7 +14,9 @@ class StaffApiController extends Controller
         $per_page = $request->get('per_page');
         $Staff = Staff::limit($per_page)->paginate($per_page);//получаем всех сотрудников
         //$count = ["LengthAwePagination" => count(Staff::paginate($per_page))];
-        return response()->json($Staff, 200);//возвращаем  сотрудников
+        //dd((Staff::all()->count())/$per_page);
+        $arrayStaff = ["Staff" => $Staff ,"LengthAwePagination" => Staff::all()->count()/$per_page];
+        return response()->json($arrayStaff, 200);//возвращаем  сотрудников
     }
 
 

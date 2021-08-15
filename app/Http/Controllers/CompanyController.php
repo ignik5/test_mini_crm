@@ -56,7 +56,7 @@ class CompanyController extends Controller
      */
     public function show(Company $Company)
     {
-        $Staff = $Company->Staff()->get();//получаем сотрудников которые работают в этой компании
+        $Staff = $Company->Staff()->all();//получаем сотрудников которые работают в этой компании
         return view('Companies.show', compact('Company', 'Staff'));//вызываем вид и передаем туда переменные
     }
 
