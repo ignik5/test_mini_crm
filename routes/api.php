@@ -18,8 +18,8 @@ use App\Http\Controllers\Api\StaffApiController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('company', [CompanyApiController::class, 'index']);
-Route::get('companies/{id}', [CompanyApiController::class, 'company']);
+Route::get('companies', [CompanyApiController::class, 'index']);
+Route::get('company/{id}', [CompanyApiController::class, 'company']);
 
-Route::get('staff', [StaffApiController::class, 'index']);
-Route::get('staffs/{id}', [StaffApiController::class, 'staff']);
+Route::get('staffs', [StaffApiController::class, 'index']);
+Route::get('staff/{id}', [StaffApiController::class, 'staff']);
